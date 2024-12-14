@@ -1,0 +1,101 @@
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Centra il contenuto verticalmente e orizzontalmente */
+    padding: 40px;
+    background-color: #f4f4f9;
+}
+
+#updateProfileForm {
+    margin-top: 20px;
+}
+
+.welcome-section h1 {
+    color: #9B1B30;
+}
+
+.welcome-section {
+    width: 100%;
+    max-width: 600px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+form input, form select, form textarea {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 100%;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+}
+
+form textarea {
+    resize: vertical;
+}
+
+form button {
+    padding: 10px 20px;
+    background-color: #9B1B30;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+form button:hover {
+    background-color: #6D1B30;
+}
+
+#modifyPasswordButton {
+    background-color: #FFA500;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.3s;
+    margin-top: 20px;
+}
+
+#modifyPasswordButton:hover {
+    background-color: #FF8C00;
+}
+
+#deleteAccountButton {
+    background-color: red;
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-weight: bold;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+#deleteAccountButton:hover {
+    background-color: darkred;
+}
+
+#status {
+    margin-top: 20px;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+/*input[readonly], select[readonly] {
+    background-color: #D3D3D3;
+}*/

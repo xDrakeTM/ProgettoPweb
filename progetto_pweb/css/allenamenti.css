@@ -1,0 +1,117 @@
+section > h1 {
+    color: #9B1B30;
+    font-size: 2em;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+th {
+    background-color: #9B1B30;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #ddd;
+}
+
+main h1 {
+    color: #9B1B30;
+}
+
+#giallo {
+    background-color: yellow;
+}
+
+#giallo:hover {
+    background-color: #ffbf00;
+}
+
+#verde {
+    background-color: lightgreen;
+}
+
+#verde:hover {
+    background-color: #32a83a;
+}
+
+#rosso {
+    background-color: red;
+}
+
+#rosso:hover {
+    background-color: #bf0a30;
+}
+
+.conferma, .rifiuta {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.conferma {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.conferma:hover {
+    background-color: #45a049;
+}
+
+.rifiuta {
+    background-color: #f44336;
+    color: white;
+}
+
+.rifiuta:hover {
+    background-color: #d32f2f;
+}
+
+.filtro-input {
+    width: 20%;
+    padding: 10px;
+    margin: 20px 0;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    height: 40px;
+}
+
+.filtro-input:focus {
+    border-color: #66afe9;
+    outline: none;
+    box-shadow: 0 0 8px rgba(102, 175, 233, 0.6);
+}
+
+.filtro-button {
+    padding: 10px 20px;
+    margin: 10px 5px;
+    background-color: #9B1B30;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    height: 40px;
+    font-weight: bold;
+}
+
+.filtro-button:hover {
+    background-color: #7A1424;
+}
