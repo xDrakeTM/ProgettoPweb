@@ -9,7 +9,7 @@ function validaLogin(event) {
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
-        body: `email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`
+        body: 'email=' + encodeURIComponent(email) + '&password=' + encodeURIComponent(password)
     })
     .then(response => response.json())
     .then(data => {
@@ -28,7 +28,7 @@ function validaLogin(event) {
             warning.textContent = data.message;
         }
     })
-    .catch(error => {
+    .catch(() => {
         warning.textContent = 'Errore durante il login. Riprova.';
     });
 }

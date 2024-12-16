@@ -6,22 +6,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const filterValue = filterInput.value.toLowerCase();
         const rows = ptTableBody.getElementsByTagName('tr');
 
-        Array.from(rows).forEach(function(row) {
+        Array.from(rows).forEach(row => {
             const cells = row.getElementsByTagName('td');
-            let match = false;
-
-            Array.from(cells).forEach(function(cell) {
-                if (cell.textContent.toLowerCase().includes(filterValue)) {
-                    match = true;
-                }
-            });
-
-            if (match) {
-                row.style.display = '';
-            } 
-            else {
-                row.style.display = 'none';
-            }
+            const match = Array.from(cells).some(cell => cell.textContent.toLowerCase().includes(filterValue));
+            row.style.display = match ? '' : 'none';
         });
     });
 });

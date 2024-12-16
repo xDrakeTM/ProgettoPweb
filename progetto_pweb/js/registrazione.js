@@ -26,7 +26,8 @@ function validaRegistrazioneUtente(event) {
     x.onload = function() {
         if (JSON.parse(x.responseText).success) {
             window.location.href = "../html/registrazioneEffettuataUtente.html";
-        } else {
+        } 
+        else {
             document.getElementById("stato").textContent = JSON.parse(x.responseText).message;
         }
     }
@@ -51,8 +52,6 @@ function validaRegistrazionePT(event) {
     formData.append("risposta2", document.getElementById("risposta2").value);
     formData.append("curriculum",  document.getElementById("curriculum").files[0]);
 
-    x.send(formData);
-
     x.onload = function() {
         if (JSON.parse(x.responseText).success) {
             window.location.href = "../html/registrazioneEffettuataPT.html";
@@ -61,4 +60,6 @@ function validaRegistrazionePT(event) {
             document.getElementById("stato").textContent = JSON.parse(x.responseText).message;
         }
     };
+
+    x.send(formData);
 }
