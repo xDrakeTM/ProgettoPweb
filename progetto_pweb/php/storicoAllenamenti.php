@@ -24,7 +24,7 @@
     };
 
     _header('Storico Allenamenti', 
-    '<link rel="stylesheet" href="../css/allenamenti.css">
+    '<link rel="stylesheet" href="../css/utility.css">
     <script src="../js/storicoAllenamenti.js"></script>', $q);
     menuPT();
 ?>

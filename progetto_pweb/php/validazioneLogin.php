@@ -17,7 +17,7 @@
             $email = $_POST['email'];
             $password = $_POST['password'];
 
-            // Verifica se l'utente è un utente normale
+            // Utente
             $stmt = $conn->prepare("SELECT * FROM utente WHERE email = ? LIMIT 1");
             $stmt->bind_param("s", $email);
             $stmt->execute();
@@ -33,8 +33,13 @@
                     $_SESSION["user_tipo"] = "utente";
 
                     $timestamp_login = date('Y-m-d H:i:s');
-                    $stmt = $conn->prepare("UPDATE utente SET timestamp_login = ?, accessi = accessi + 1 WHERE email = ?");
+                    $stmt = $conn->prepare("UPDATE utente SET timestamp_login = ? WHERE email = ?");
                     $stmt->bind_param("ss", $timestamp_login, $email);
+                    $stmt->execute();
+
+                    // Registra l'accesso nella tabella accessi
+                    $stmt = $conn->prepare("INSERT INTO accessi (user_id, user_tipo, timestamp_accesso) VALUES (?, 'utente', ?)");
+                    $stmt->bind_param("is", $user["id"], $timestamp_login);
                     $stmt->execute();
 
                     echo json_encode([
@@ -52,7 +57,7 @@
                 }
             }
 
-            // Verifica se l'utente è un personal trainer
+            // Personal Trainer
             $stmt = $conn->prepare("SELECT * FROM personal_trainer WHERE email = ? AND attivo = 1 LIMIT 1");
             $stmt->bind_param("s", $email);
             $stmt->execute();
@@ -68,8 +73,13 @@
                     $_SESSION["user_tipo"] = "personal_trainer";
 
                     $timestamp_login = date('Y-m-d H:i:s');
-                    $stmt = $conn->prepare("UPDATE personal_trainer SET timestamp_login = ?, accessi = accessi + 1 WHERE email = ?");
+                    $stmt = $conn->prepare("UPDATE personal_trainer SET timestamp_login = ? WHERE email = ?");
                     $stmt->bind_param("ss", $timestamp_login, $email);
+                    $stmt->execute();
+
+                    // Registra l'accesso nella tabella accessi
+                    $stmt = $conn->prepare("INSERT INTO accessi (user_id, user_tipo, timestamp_accesso) VALUES (?, 'personal_trainer', ?)");
+                    $stmt->bind_param("is", $pt["id"], $timestamp_login);
                     $stmt->execute();
 
                     echo json_encode([
@@ -87,7 +97,7 @@
                 }
             }
 
-            // Verifica se l'utente è un amministratore
+            // Admin
             $stmt = $conn->prepare("SELECT * FROM admin WHERE email = ? LIMIT 1");
             $stmt->bind_param("s", $email);
             $stmt->execute();
@@ -108,7 +118,7 @@
 
                     echo json_encode([
                         "success" => true,
-                        "message" => "Login amministratore riuscito!",
+                        "message" => "Login admin riuscito!",
                         "user_tipo" => "admin"
                     ]);
                     exit();

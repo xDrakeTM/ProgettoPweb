@@ -1,9 +1,12 @@
 <?php
     include '../utility/functions.php';
 
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+
     controllaUtente('homePT');
 
-    session_start();
     $user_id = $_SESSION["user_id"];
 
     $conn = new mysqli("localhost", "root", "", "carinci_635710");
@@ -27,7 +30,7 @@
     $conn->close();
 
     _header('Obiettivi', 
-    '<link rel="stylesheet" href="../css/allenamenti.css">
+    '<link rel="stylesheet" href="../css/utility.css">
     <script src="../js/obiettivi.js"></script>');
     menuUtente();
 ?>

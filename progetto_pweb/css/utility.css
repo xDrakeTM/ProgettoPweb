@@ -83,7 +83,7 @@ main h1 {
     background-color: #d32f2f;
 }
 
-.filtro-input {
+.filter-input {
     width: 20%;
     padding: 10px;
     margin: 20px 0;
@@ -94,13 +94,13 @@ main h1 {
     height: 40px;
 }
 
-.filtro-input:focus {
+.filter-input:focus {
     border-color: #66afe9;
     outline: none;
     box-shadow: 0 0 8px rgba(102, 175, 233, 0.6);
 }
 
-.filtro-button {
+.filter-button {
     padding: 10px 20px;
     margin: 10px 5px;
     background-color: #9B1B30;
@@ -112,6 +112,6 @@ main h1 {
     font-weight: bold;
 }
 
-.filtro-button:hover {
+.filter-button:hover {
     background-color: #7A1424;
 }

@@ -1,5 +1,7 @@
 <?php
-    session_start();
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
 
     $conn = new mysqli("localhost", "root", "", "carinci_635710");
     if ($conn->connect_error) {

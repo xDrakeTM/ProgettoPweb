@@ -23,7 +23,8 @@
         $stmt->execute();
         $stmt->close();
 
-        $sql = "SELECT a.id, CONCAT(u.nome, ' ', u.cognome) as utente, DATE_FORMAT(a.data, '%d/%m/%Y') as data, TIME_FORMAT(a.ora, '%H:%i') as ora_inizio, TIME_FORMAT((a.ora + INTERVAL 1 HOUR), '%H:%i') as ora_fine 
+        $sql = "SELECT a.id, CONCAT(u.nome, ' ', u.cognome) as utente, DATE_FORMAT(a.data, '%d/%m/%Y') as data, 
+                TIME_FORMAT(a.ora, '%H:%i') as ora_inizio, TIME_FORMAT((a.ora + INTERVAL 1 HOUR), '%H:%i') as ora_fine 
                 FROM appuntamento a 
                 INNER JOIN utente u ON a.utente_id = u.id 
                 WHERE a.personal_trainer_id = ? AND a.stato = 'prenotato'";
@@ -35,7 +36,7 @@
     };
 
     _header('Gestisci Allenamenti', 
-    '<link rel="stylesheet" href="../css/allenamenti.css">
+    '<link rel="stylesheet" href="../css/utility.css">
     <script src="../js/gestisciAllenamenti.js"></script>', $q);
     menuPT();
 ?>

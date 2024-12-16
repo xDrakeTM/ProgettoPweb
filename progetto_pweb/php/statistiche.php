@@ -1,9 +1,12 @@
 <?php
     include '../utility/functions.php';
 
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
+
     controllaUtente('homePT');
 
-    session_start();
     $user_id = $_SESSION["user_id"];
 
     $conn = new mysqli("localhost", "root", "", "carinci_635710");
@@ -99,7 +102,7 @@
         <h1>Statistiche dei Progressi Mensili</h1>
         <form method="GET" action="statistiche.php">
             <label style="font-weight: bold;" for="mese">Mese:</label>
-            <select class="filtro-select" id="mese" name="mese">
+            <select class="filter-select" id="mese" name="mese">
                 <option value="1" <?php if ($selectedMonth == 1) echo 'selected'; ?>>Gennaio</option>
                 <option value="2" <?php if ($selectedMonth == 2) echo 'selected'; ?>>Febbraio</option>
                 <option value="3" <?php if ($selectedMonth == 3) echo 'selected'; ?>>Marzo</option>
@@ -114,14 +117,14 @@
                 <option value="12" <?php if ($selectedMonth == 12) echo 'selected'; ?>>Dicembre</option>
             </select>
             <label style="font-weight: bold;" for="anno">Anno:</label>
-            <select class="filtro-select" id="anno" name="anno">
+            <select class="filter-select" id="anno" name="anno">
                 <?php for ($y = 2020; $y <= date('Y'); $y++): ?>
                     <option value="<?php echo $y; ?>" <?php if ($y == $selectedYear) echo 'selected'; ?>>
                         <?php echo $y; ?>
                     </option>
                 <?php endfor; ?>
             </select>
-            <button class="filtro-button" type="submit">Filtra</button>
+            <button class="filter-button" type="submit">Filtra</button>
         </form>
         <div class="chart-container">
             <canvas id="percentualeCompletatiChart"></canvas>

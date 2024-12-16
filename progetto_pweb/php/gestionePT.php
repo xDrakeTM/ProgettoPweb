@@ -29,7 +29,7 @@
     $conn->close();
 
     _header('Gestione Personal Trainer', 
-    '<link rel="stylesheet" href="../css/allenamenti.css">
+    '<link rel="stylesheet" href="../css/utility.css">
     <script src="../js/gestioneUtentiPT.js"></script>');
     menuAdmin();
 ?>
@@ -40,7 +40,7 @@
     </section>
 
     <section class="filter-section">
-        <input type="text" class="filtro-input" id="filtro-input" placeholder="Filtra...">
+        <input type="text" class="filter-input" id="filter-input" placeholder="Filtra...">
     </section>
 
     <section class="pt-section">

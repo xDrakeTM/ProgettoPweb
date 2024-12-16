@@ -4,7 +4,7 @@
     controllaUtente('homePT');
     
     _header('I tuoi allenamenti', '<script src="../js/allenamenti.js"></script> 
-    <link rel="stylesheet" href="../css/allenamenti.css">');
+    <link rel="stylesheet" href="../css/utility.css">');
     menuUtente();
 ?>
 

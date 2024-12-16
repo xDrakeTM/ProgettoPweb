@@ -1,7 +1,9 @@
 <?php
     include '../utility/functions.php';
 
-    session_start();
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
     controllaAdmin();
 
     $conn = new mysqli("localhost", "root", "", "carinci_635710");
@@ -14,7 +16,7 @@
     $conn->close();
 
     _header('Gestione Utenti', 
-    '<link rel="stylesheet" href="../css/allenamenti.css">
+    '<link rel="stylesheet" href="../css/utility.css">
     <script src="../js/gestioneUtentiPT.js"></script>');
     menuAdmin();
 ?>
@@ -25,7 +27,7 @@
     </section>
 
     <section class="filter-section">
-        <input type="text" class="filtro-input" id="filtro-input" placeholder="Filtra...">
+        <input type="text" class="filter-input" id="filter-input" placeholder="Filtra...">
     </section>
 
     <section class="users-section">
