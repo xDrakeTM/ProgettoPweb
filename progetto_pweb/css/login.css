@@ -98,3 +98,18 @@ button:hover {
 p {
     font-weight: bold;
 }
+
+@media (max-width: 768px) {
+    .login-container {
+        flex-direction: column;
+    }
+
+    .login-image {
+        display: none;
+    }
+
+    .login-form {
+        width: 100%;
+        padding: 0px;
+    }
+}

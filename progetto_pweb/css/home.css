@@ -10,6 +10,7 @@ body {
     color: #333;
     display: flex;
     min-height: 100vh;
+    flex-direction: column;
 }
 
 .layout {
@@ -138,4 +139,31 @@ footer {
 
 footer p {
     font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .layout {
+        flex-direction: column;
+    }
+
+    header {
+        width: 100%;
+        min-height: auto;
+        padding: 10px 0;
+    }
+
+    .navbar h1 {
+        font-size: 1.5rem;
+    }
+
+    nav ul {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        width: 100%;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
 }
