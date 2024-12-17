@@ -78,7 +78,7 @@
                     $stmt->execute();
 
                     // Registra l'accesso nella tabella accessi
-                    $stmt = $conn->prepare("INSERT INTO accessi (user_id, user_tipo, timestamp_accesso) VALUES (?, 'personal_trainer', ?)");
+                    $stmt = $conn->prepare("INSERT INTO accessi (pt_id, user_tipo, timestamp_accesso) VALUES (?, 'personal_trainer', ?)");
                     $stmt->bind_param("is", $pt["id"], $timestamp_login);
                     $stmt->execute();
 

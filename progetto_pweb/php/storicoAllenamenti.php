@@ -32,9 +32,9 @@
     <section class="welcome-section">
         <h1>Storico Allenamenti</h1>
 
-        <input type="text" id="filtro" class="filtro-input" placeholder="Filtra...">
-        <button onclick="filtraOggi()" class="filtro-button">Appuntamenti di Oggi</button>
-        <button onclick="filtraTutti()" class="filtro-button">Tutti gli Appuntamenti</button>
+        <input type="text" id="filter" class="filter-input" placeholder="Filtra...">
+        <button onclick="filtraOggi()" class="filter-button">Appuntamenti di Oggi</button>
+        <button onclick="filtraTutti()" class="filter-button">Tutti gli Appuntamenti</button>
 
         <table>
             <thead>
