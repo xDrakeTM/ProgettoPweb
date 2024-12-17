@@ -1,5 +1,6 @@
 <?php
     include '../utility/functions.php';
+    include '../utility/getDBConnection.php';
 
     if (session_status() === PHP_SESSION_NONE) {
         session_start();
@@ -9,7 +10,7 @@
 
     $user_id = $_SESSION["user_id"];
 
-    $conn = new mysqli("localhost", "root", "", "carinci_635710");
+    $conn = getDBConnection();
     if ($conn->connect_error) {
         die("Errore di connessione al database: " . $conn->connect_error);
     }

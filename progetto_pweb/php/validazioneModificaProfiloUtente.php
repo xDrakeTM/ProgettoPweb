@@ -1,4 +1,6 @@
 <?php
+    include '../utility/getDBConnection.php';
+
     if (session_status() === PHP_SESSION_NONE) {
         session_start();
     }
@@ -8,7 +10,7 @@
         exit();
     }
 
-    $conn = new mysqli("localhost", "root", "", "carinci_635710");
+    $conn = getDBConnection();
 
     if ($conn->connect_error) {
         echo json_encode(["success" => false, "message" => "Connessione fallita: " . $conn->connect_error]);

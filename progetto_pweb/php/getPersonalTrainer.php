@@ -1,7 +1,8 @@
 <?php
     include '../utility/functions.php';
+    include '../utility/getDBConnection.php';
 
-    $conn = new mysqli("localhost", "root", "", "carinci_635710");
+    $conn = getDBConnection();
     if ($conn->connect_error) {
         die(json_encode(["success" => false, "message" => "Connessione al database fallita: " . $conn->connect_error]));
     }

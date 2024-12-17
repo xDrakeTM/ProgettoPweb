@@ -1,5 +1,6 @@
 <?php
     include '../utility/functions.php';
+    include '../utility/getDBConnection.php';
 
     controllaUtente('homePT');
 
@@ -8,7 +9,7 @@
 
         $user_id = $_SESSION["user_id"];
 
-        $conn = new mysqli("localhost", "root", "", "carinci_635710");
+        $conn = getDBConnection();
         $stmt = $conn->prepare("SELECT nome, cognome, email, data_nascita, genere, altezza, peso, informazioni_mediche, note, certificato, data_emissione_certificato FROM utente WHERE id = ?");
         $stmt->bind_param("i", $user_id);
         $stmt->execute();

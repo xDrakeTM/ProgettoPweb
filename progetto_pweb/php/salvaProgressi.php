@@ -1,4 +1,6 @@
 <?php
+    include '../utility/getDBConnection.php';
+
     if (session_status() === PHP_SESSION_NONE) {
         session_start();
     }
@@ -7,7 +9,7 @@
         die(json_encode(['success' => false, 'message' => 'Utente non autenticato']));
     }
 
-    $conn = new mysqli("localhost", "root", "", "carinci_635710");
+    $conn = getDBConnection();
     if ($conn->connect_error) {
         die(json_encode(['success' => false, 'message' => 'Errore di connessione al database: ' . $conn->connect_error]));
     }

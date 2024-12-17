@@ -1,5 +1,7 @@
 <?php
-    $conn = new mysqli("localhost", "root", "", "carinci_635710");
+    include '../utility/getDBConnection.php';
+
+    $conn = getDBConnection();
 
     if ($conn->connect_error) {
         die(json_encode([

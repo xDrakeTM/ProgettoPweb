@@ -1,4 +1,6 @@
 <?php
+    include '../utility/getDBConnection.php';
+
     if (session_status() === PHP_SESSION_NONE) {
         session_start();
     }
@@ -13,7 +15,7 @@
 
     $appuntamento_id = $_GET['appuntamento_id'];
 
-    $conn = new mysqli("localhost", "root", "", "carinci_635710");
+    $conn = getDBConnection();
     if ($conn->connect_error) {
         die(json_encode(['success' => false, 'message' => 'Connessione al database fallita: ' . $conn->connect_error]));
     }

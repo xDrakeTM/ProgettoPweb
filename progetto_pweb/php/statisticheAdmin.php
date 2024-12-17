@@ -1,8 +1,10 @@
 <?php
     include '../utility/functions.php';
+    include '../utility/getDBConnection.php';
+    
     controllaAdmin();
 
-    $conn = new mysqli("localhost", "root", "", "carinci_635710");
+    $conn = getDBConnection();
     if ($conn->connect_error) {
         die("Connessione al database fallita: " . $conn->connect_error);
     }
