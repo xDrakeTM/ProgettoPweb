@@ -8,6 +8,21 @@
         die("Connessione fallita: " . $conn->connect_error);
     }
 
+    // Controlla se oggi è il primo giorno del mese
+    if (date('j') == 1) {
+        // Elimina i personal trainer non accettati da più di un mese
+        $sql = "DELETE FROM personal_trainer 
+                WHERE attivo = 0 
+                AND timestamp_creazione < NOW() - INTERVAL 1 MONTH";
+
+        if ($conn->query($sql) === TRUE) {
+            echo "Personal trainer non accettati eliminati con successo.";
+        } 
+        else {
+            echo "Errore durante l'eliminazione dei personal trainer non accettati: " . $conn->error;
+        }
+    }
+
     $sql = "SELECT id, nome, cognome, email, data_nascita, genere, cellulare, curriculum, timestamp_login, timestamp_logout, timestamp_creazione, timestamp_aggiornamento, attivo FROM personal_trainer";
     $result = $conn->query($sql);
 
