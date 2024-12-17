@@ -92,7 +92,7 @@
                             <td><?php echo htmlspecialchars($row['timestamp_creazione']); ?></td>
                             <td><?php echo htmlspecialchars($row['timestamp_aggiornamento']); ?></td>
                             <td>
-                                <button onclick="eliminaAccount(<?php echo $row['id']; ?>)">Elimina</button>
+                                <a href="#" style="color: red; font-weight: bold;" onclick="eliminaAccount(<?php echo $row['id']; ?>)">Elimina</a>
                             </td>
                         </tr>
                     <?php endwhile; ?>
