@@ -1,5 +1,4 @@
-# Progetto Pweb - PulseCoah
-## Utenti presenti
+# Utenti presenti
 
 - **Admin**
   - **Email**: admin@pulsecoach.it
@@ -13,4 +12,4 @@
   - **Email**: luigi.verdi@gmail.com
   - **Password**: @CiaoComeStai89
 
-## Obiettivi presenti
+# Obiettivi presenti
