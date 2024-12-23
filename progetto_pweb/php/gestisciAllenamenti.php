@@ -4,7 +4,7 @@
 
     controllaPT('homeUtente');
 
-    $q = function() use ($conn) {
+    $q = function() {
         global $user;
         $user_id = $_SESSION["user_id"];
 

@@ -137,6 +137,10 @@ function salvaObiettivo(form, hr) {
         params.append('peso', form.querySelector('[name="peso"]').value);
     }
 
+    if (form.querySelector('[name="progresso"]')) {
+        params.append('progresso', form.querySelector('[name="progresso"]').value);
+    }
+
     x.onload = function() {
         if (x.status === 200) {
             try {

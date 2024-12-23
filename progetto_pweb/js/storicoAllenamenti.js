@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const filtraInput = document.getElementById('filtro');
+    const filtraInput = document.getElementById('filter');
     const rows = document.querySelectorAll('tbody tr');
 
     filtraInput.addEventListener('input', function() {

@@ -85,7 +85,7 @@
                             <td><?php echo htmlspecialchars($row['peso']); ?></td>
                             <td><?php echo htmlspecialchars($row['informazioni_mediche']); ?></td>
                             <td><?php echo htmlspecialchars($row['note']); ?></td>
-                            <td><a href="../certificati/<?php echo htmlspecialchars($row['certificato']); ?>">Visualizza</a></td>
+                            <td><a href="../certificati/<?php echo htmlspecialchars($row['certificato']); ?>" target="_blank">Visualizza</a></td>
                             <td><?php echo htmlspecialchars($row['data_emissione_certificato']); ?></td>
                             <td style="font-weight: bold; color: <?php echo $colore; ?>;"><?php echo $stato_certificato; ?></td>
                             <td><?php echo htmlspecialchars($row['timestamp_login']); ?></td>

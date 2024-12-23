@@ -35,7 +35,7 @@ function salvaProgresso(obiettivoId) {
             if (response.success) {
                 alert("Progresso salvato con successo!");
                 const obiettivoDiv = document.getElementById('obiettivo-' + obiettivoId);
-                const hr = obiettivoDiv.nextElementSibling;
+                const hr = obiettivoDiv.previousElementSibling;
                 if (hr && hr.tagName === 'HR') {
                     hr.remove();
                 }

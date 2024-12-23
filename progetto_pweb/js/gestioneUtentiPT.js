@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const filterInput = document.getElementById('filtro-input');
+    const filterInput = document.getElementById('filter-input');
     const ptTableBody = document.getElementById('TableBody');
 
     filterInput.addEventListener('keyup', function() {

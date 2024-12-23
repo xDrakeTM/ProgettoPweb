@@ -4,7 +4,7 @@
 
     controllaPT('homeUtente');
 
-    $q = function() use ($conn) {
+    $q = function() {
         global $user;
         $user_id = $_SESSION["user_id"];
 
@@ -34,8 +34,8 @@
         <h1>Storico Allenamenti</h1>
 
         <input type="text" id="filter" class="filter-input" placeholder="Filtra...">
-        <button onclick="filtraOggi()" class="filter-button">Appuntamenti di Oggi</button>
-        <button onclick="filtraTutti()" class="filter-button">Tutti gli Appuntamenti</button>
+        <button id="filtraOggi" class="filter-button">Appuntamenti di Oggi</button>
+        <button id="filtraTutti" class="filter-button">Tutti gli Appuntamenti</button>
 
         <table>
             <thead>
