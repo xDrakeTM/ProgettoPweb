@@ -21,7 +21,6 @@
     $selectedMonth = isset($_GET['mese']) ? $_GET['mese'] : $currentMonth;
     $selectedYear = isset($_GET['anno']) ? $_GET['anno'] : $currentYear;
 
-    // Recupera i progressi degli esercizi quantitativi per il mese selezionato
     $sqlQuantitativi = "SELECT o.obiettivo, o.progresso1, o.progresso2, o.progresso3, o.ripetizioni, o.serie, o.peso 
                         FROM obiettivi o
                         JOIN appuntamento a ON o.appuntamento_id = a.id
@@ -36,16 +35,12 @@
     $quantitativiCompletati = 0;
     while ($row = $resultQuantitativi->fetch_assoc()) {
         if ($row['progresso1'] >= $row['ripetizioni'] && $row['progresso2'] >= $row['serie'] && $row['progresso3'] >= $row['peso']) {
-            $row['progresso1'] = ($row['progresso1'] / $row['ripetizioni']) * 100;
-            $row['progresso2'] = ($row['progresso2'] / $row['serie']) * 100;
-            $row['progresso3'] = ($row['progresso3'] / $row['peso']) * 100;
             $quantitativiCompletati++;
         }
         $quantitativi[] = $row;
     }
     $stmtQuantitativi->close();
 
-    // Recupera i progressi degli esercizi continuativi per il mese selezionato
     $sqlContinuativi = "SELECT o.obiettivo, o.progresso1, o.progresso2 
                         FROM obiettivi o
                         JOIN appuntamento a ON o.appuntamento_id = a.id
@@ -60,29 +55,28 @@
     $continuativiCompletati = 0;
     while ($row = $resultContinuativi->fetch_assoc()) {
         if ($row['progresso2'] >= $row['progresso1']) {
-            $row['progresso2'] = ($row['progresso2'] / $row['progresso1']) * 100;
             $continuativiCompletati++;
         }
+        $row['progresso2'] = ($row['progresso2'] / $row['progresso1']) * 100;
         $continuativi[] = $row;
     }
     $stmtContinuativi->close();
 
-    // Calcola la percentuale di obiettivi completati
     $totalObiettivi = count($quantitativi) + count($continuativi);
     if ($totalObiettivi > 0) {
         $percentualeCompletati = ($quantitativiCompletati + $continuativiCompletati) / $totalObiettivi * 100;
-    } else {
+    }
+    else {
         $percentualeCompletati = 0;
     }
-
-    // Recupera la media di esercizi quantitativi eseguiti ad ogni allenamento per il mese selezionato
+    
     $sqlMediaEserciziQuantitativi = "SELECT AVG(num_esercizi) as media_esercizi 
                                     FROM (SELECT COUNT(*) as num_esercizi 
-                                        FROM obiettivi o
-                                        JOIN appuntamento a ON o.appuntamento_id = a.id
-                                        WHERE a.utente_id = ? AND o.tipo_obiettivo = 'quantitativo'
-                                        AND MONTH(a.data) = ? AND YEAR(a.data) = ?
-                                        GROUP BY o.appuntamento_id) as subquery";
+                                    FROM obiettivi o
+                                    JOIN appuntamento a ON o.appuntamento_id = a.id
+                                    WHERE a.utente_id = ? AND o.tipo_obiettivo = 'quantitativo'
+                                    AND MONTH(a.data) = ? AND YEAR(a.data) = ?
+                                    GROUP BY o.appuntamento_id) as subquery";
     $stmtMediaEserciziQuantitativi = $conn->prepare($sqlMediaEserciziQuantitativi);
     $stmtMediaEserciziQuantitativi->bind_param("iii", $user_id, $selectedMonth, $selectedYear);
     $stmtMediaEserciziQuantitativi->execute();
