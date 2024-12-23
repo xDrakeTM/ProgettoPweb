@@ -1,112 +1,124 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
+-- Progettazione Web 
+DROP DATABASE if exists carinci_635710; 
+CREATE DATABASE carinci_635710; 
+USE carinci_635710; 
+-- MySQL dump 10.13  Distrib 5.7.28, for Win64 (x86_64)
 --
--- Host: localhost
--- Creato il: Dic 23, 2024 alle 16:48
--- Versione del server: 10.4.28-MariaDB
--- Versione PHP: 8.2.4
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
+-- Host: localhost    Database: carinci_635710
+-- ------------------------------------------------------
+-- Server version	5.7.28
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Database: `carinci_635710`
+-- Table structure for table `accessi`
 --
 
--- --------------------------------------------------------
-
---
--- Struttura della tabella `accessi`
---
-
+DROP TABLE IF EXISTS `accessi`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `accessi` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
   `pt_id` int(11) DEFAULT NULL,
   `user_tipo` enum('utente','personal_trainer') NOT NULL,
-  `timestamp_accesso` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `timestamp_accesso` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`),
+  KEY `pt_id` (`pt_id`),
+  CONSTRAINT `accessi_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `utente` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `accessi_ibfk_2` FOREIGN KEY (`pt_id`) REFERENCES `personal_trainer` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dump dei dati per la tabella `accessi`
+-- Dumping data for table `accessi`
 --
 
-INSERT INTO `accessi` (`id`, `user_id`, `pt_id`, `user_tipo`, `timestamp_accesso`) VALUES
-(19, NULL, 6, 'personal_trainer', '2024-12-23 11:45:33'),
-(20, 18, NULL, 'utente', '2024-12-23 11:46:16'),
-(21, 18, NULL, 'utente', '2024-12-23 11:53:34'),
-(22, NULL, 6, 'personal_trainer', '2024-12-23 11:58:13'),
-(23, 18, NULL, 'utente', '2024-12-23 12:33:13'),
-(24, NULL, 6, 'personal_trainer', '2024-12-23 12:34:28'),
-(25, 18, NULL, 'utente', '2024-12-23 12:34:50'),
-(26, NULL, 6, 'personal_trainer', '2024-12-23 12:35:15'),
-(27, 18, NULL, 'utente', '2024-12-23 12:38:59'),
-(28, NULL, 6, 'personal_trainer', '2024-12-23 12:40:54'),
-(29, NULL, 6, 'personal_trainer', '2024-12-23 12:47:46'),
-(30, 18, NULL, 'utente', '2024-12-23 12:48:44'),
-(31, NULL, 6, 'personal_trainer', '2024-12-23 13:05:52'),
-(32, NULL, 6, 'personal_trainer', '2024-12-23 13:09:05'),
-(33, 18, NULL, 'utente', '2024-12-23 13:19:31');
-
--- --------------------------------------------------------
+LOCK TABLES `accessi` WRITE;
+/*!40000 ALTER TABLE `accessi` DISABLE KEYS */;
+INSERT INTO `accessi` VALUES (19,NULL,6,'personal_trainer','2024-12-23 11:45:33'),(20,18,NULL,'utente','2024-12-23 11:46:16'),(21,18,NULL,'utente','2024-12-23 11:53:34'),(22,NULL,6,'personal_trainer','2024-12-23 11:58:13'),(23,18,NULL,'utente','2024-12-23 12:33:13'),(24,NULL,6,'personal_trainer','2024-12-23 12:34:28'),(25,18,NULL,'utente','2024-12-23 12:34:50'),(26,NULL,6,'personal_trainer','2024-12-23 12:35:15'),(27,18,NULL,'utente','2024-12-23 12:38:59'),(28,NULL,6,'personal_trainer','2024-12-23 12:40:54'),(29,NULL,6,'personal_trainer','2024-12-23 12:47:46'),(30,18,NULL,'utente','2024-12-23 12:48:44'),(31,NULL,6,'personal_trainer','2024-12-23 13:05:52'),(32,NULL,6,'personal_trainer','2024-12-23 13:09:05'),(33,18,NULL,'utente','2024-12-23 13:19:31'),(34,18,NULL,'utente','2024-12-23 19:27:45'),(35,NULL,6,'personal_trainer','2024-12-23 19:29:28'),(36,18,NULL,'utente','2024-12-23 19:30:58'),(37,NULL,6,'personal_trainer','2024-12-23 19:31:32'),(38,18,NULL,'utente','2024-12-23 19:32:09'),(39,18,NULL,'utente','2024-12-23 20:10:49');
+/*!40000 ALTER TABLE `accessi` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Struttura della tabella `admin`
+-- Table structure for table `admin`
 --
 
+DROP TABLE IF EXISTS `admin`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `admin` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `nome` varchar(255) NOT NULL,
-  `timestamp_login` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `timestamp_login` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dump dei dati per la tabella `admin`
+-- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`id`, `email`, `password`, `nome`, `timestamp_login`) VALUES
-(1, 'admin@pulsecoach.it', '$2y$10$EdtBs5VaRh37Q/hGeWUtNuQlXpS7Jh1ex3.5fH4zBdjKaQLKhnqVW', 'Admin1', '2024-12-23 13:05:19');
-
--- --------------------------------------------------------
+LOCK TABLES `admin` WRITE;
+/*!40000 ALTER TABLE `admin` DISABLE KEYS */;
+INSERT INTO `admin` VALUES (1,'admin@pulsecoach.it','$2y$10$EdtBs5VaRh37Q/hGeWUtNuQlXpS7Jh1ex3.5fH4zBdjKaQLKhnqVW','Admin1','2024-12-23 20:10:59');
+/*!40000 ALTER TABLE `admin` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Struttura della tabella `appuntamento`
+-- Table structure for table `appuntamento`
 --
 
+DROP TABLE IF EXISTS `appuntamento`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `appuntamento` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `utente_id` int(11) DEFAULT NULL,
   `personal_trainer_id` int(11) DEFAULT NULL,
   `data` date NOT NULL,
   `ora` time NOT NULL,
-  `stato` enum('prenotato','confermato','cancellato') DEFAULT 'prenotato'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `stato` enum('prenotato','confermato','cancellato') DEFAULT 'prenotato',
+  PRIMARY KEY (`id`),
+  KEY `utente_id` (`utente_id`),
+  KEY `personal_trainer_id` (`personal_trainer_id`),
+  CONSTRAINT `appuntamento_ibfk_1` FOREIGN KEY (`utente_id`) REFERENCES `utente` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `appuntamento_ibfk_2` FOREIGN KEY (`personal_trainer_id`) REFERENCES `personal_trainer` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dump dei dati per la tabella `appuntamento`
+-- Dumping data for table `appuntamento`
 --
 
-INSERT INTO `appuntamento` (`id`, `utente_id`, `personal_trainer_id`, `data`, `ora`, `stato`) VALUES
-(11, 18, 6, '2024-12-23', '14:00:00', 'confermato');
-
--- --------------------------------------------------------
+LOCK TABLES `appuntamento` WRITE;
+/*!40000 ALTER TABLE `appuntamento` DISABLE KEYS */;
+INSERT INTO `appuntamento` VALUES (11,18,6,'2024-12-23','14:00:00','confermato');
+/*!40000 ALTER TABLE `appuntamento` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Struttura della tabella `obiettivi`
+-- Table structure for table `obiettivi`
 --
 
+DROP TABLE IF EXISTS `obiettivi`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `obiettivi` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `appuntamento_id` int(11) NOT NULL,
   `tipo_obiettivo` varchar(50) NOT NULL,
   `obiettivo` varchar(255) NOT NULL,
@@ -116,25 +128,32 @@ CREATE TABLE `obiettivi` (
   `peso` decimal(5,2) DEFAULT NULL,
   `progresso1` int(11) DEFAULT NULL,
   `progresso2` int(11) DEFAULT NULL,
-  `progresso3` decimal(5,2) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `progresso3` decimal(5,2) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `appuntamento_id` (`appuntamento_id`),
+  CONSTRAINT `obiettivi_ibfk_1` FOREIGN KEY (`appuntamento_id`) REFERENCES `appuntamento` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dump dei dati per la tabella `obiettivi`
+-- Dumping data for table `obiettivi`
 --
 
-INSERT INTO `obiettivi` (`id`, `appuntamento_id`, `tipo_obiettivo`, `obiettivo`, `descrizione`, `ripetizioni`, `serie`, `peso`, `progresso1`, `progresso2`, `progresso3`) VALUES
-(31, 11, 'quantitativo', 'Panca Piana', 'Usare il bilanciere o in alternativa fare la Chest Press', 8, 3, 35.00, 6, 2, 30.00),
-(33, 11, 'continuativo', 'Bere 2 litri d\'acqua al giorno per 3 giorni', 'Segnare quanti giorni si è rispettato questo obiettivo giornaliero', NULL, NULL, NULL, 3, 3, -1.00);
-
--- --------------------------------------------------------
+LOCK TABLES `obiettivi` WRITE;
+/*!40000 ALTER TABLE `obiettivi` DISABLE KEYS */;
+INSERT INTO `obiettivi` VALUES (31,11,'quantitativo','Panca Piana','Usare il bilanciere o in alternativa fare la Chest Press',8,3,35.00,6,2,30.00),(33,11,'continuativo','Bere 2 litri d\'acqua al giorno per 3 giorni','Segnare quanti giorni si è rispettato questo obiettivo giornaliero',NULL,NULL,NULL,3,3,-1.00);
+/*!40000 ALTER TABLE `obiettivi` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Struttura della tabella `personal_trainer`
+-- Table structure for table `personal_trainer`
 --
 
+DROP TABLE IF EXISTS `personal_trainer`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `personal_trainer` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(100) NOT NULL,
   `cognome` varchar(100) NOT NULL,
   `email` varchar(255) NOT NULL,
@@ -145,28 +164,35 @@ CREATE TABLE `personal_trainer` (
   `curriculum` varchar(255) NOT NULL,
   `timestamp_login` datetime DEFAULT NULL,
   `timestamp_logout` datetime DEFAULT NULL,
-  `timestamp_creazione` datetime DEFAULT current_timestamp(),
-  `timestamp_aggiornamento` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `timestamp_creazione` datetime DEFAULT CURRENT_TIMESTAMP,
+  `timestamp_aggiornamento` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `risposta1` varchar(255) NOT NULL,
   `risposta2` varchar(255) NOT NULL,
-  `attivo` tinyint(1) DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `attivo` tinyint(1) DEFAULT '1',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dump dei dati per la tabella `personal_trainer`
+-- Dumping data for table `personal_trainer`
 --
 
-INSERT INTO `personal_trainer` (`id`, `nome`, `cognome`, `email`, `data_nascita`, `genere`, `cellulare`, `password`, `curriculum`, `timestamp_login`, `timestamp_logout`, `timestamp_creazione`, `timestamp_aggiornamento`, `risposta1`, `risposta2`, `attivo`) VALUES
-(6, 'Luigi', 'Verdi', 'luigi.verdi@gmail.com', '2000-12-10', 'M', '1231231234', '$2y$10$Dg/L2SNsbWKP9p5s8AFwyurympzyRJHR/84dld/0n34M6yYcs.aZC', 'curriculum1.pdf', '2024-12-23 13:09:05', '2024-12-23 13:19:04', '2024-12-23 11:44:27', '2024-12-23 13:19:04', '$2y$10$ungBO5NziEtNSx9UPyTBmO0EgMVNwIFBUNjtKQsKtu53MNz4OfePa', '$2y$10$0/WLVAtGkMInCLDB8JAPL.TSVsLJfTwXA4fBMBTRfyudrZe/ppooi', 1);
-
--- --------------------------------------------------------
+LOCK TABLES `personal_trainer` WRITE;
+/*!40000 ALTER TABLE `personal_trainer` DISABLE KEYS */;
+INSERT INTO `personal_trainer` VALUES (6,'Luigi','Verdi','luigi.verdi@gmail.com','2000-12-10','M','1231231234','$2y$10$Dg/L2SNsbWKP9p5s8AFwyurympzyRJHR/84dld/0n34M6yYcs.aZC','curriculum1.pdf','2024-12-23 19:31:32','2024-12-23 19:31:59','2024-12-23 11:44:27','2024-12-23 20:10:10','$2y$10$ungBO5NziEtNSx9UPyTBmO0EgMVNwIFBUNjtKQsKtu53MNz4OfePa','$2y$10$0/WLVAtGkMInCLDB8JAPL.TSVsLJfTwXA4fBMBTRfyudrZe/ppooi',1);
+/*!40000 ALTER TABLE `personal_trainer` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Struttura della tabella `utente`
+-- Table structure for table `utente`
 --
 
+DROP TABLE IF EXISTS `utente`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `utente` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(100) NOT NULL,
   `cognome` varchar(100) NOT NULL,
   `email` varchar(255) NOT NULL,
@@ -183,130 +209,30 @@ CREATE TABLE `utente` (
   `data_emissione_certificato` date NOT NULL,
   `timestamp_login` datetime DEFAULT NULL,
   `timestamp_logout` datetime DEFAULT NULL,
-  `timestamp_creazione` datetime DEFAULT current_timestamp(),
-  `timestamp_aggiornamento` datetime DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `timestamp_creazione` datetime DEFAULT CURRENT_TIMESTAMP,
+  `timestamp_aggiornamento` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dump dei dati per la tabella `utente`
+-- Dumping data for table `utente`
 --
 
-INSERT INTO `utente` (`id`, `nome`, `cognome`, `email`, `password`, `data_nascita`, `genere`, `altezza`, `peso`, `informazioni_mediche`, `note`, `risposta1`, `risposta2`, `certificato`, `data_emissione_certificato`, `timestamp_login`, `timestamp_logout`, `timestamp_creazione`, `timestamp_aggiornamento`) VALUES
-(18, 'Mario', 'Rossi', 'mario.rossi@gmail.com', '$2y$10$66.MVMKJz/LLeGPsHp89LOTzkVQD1MlSDzhZdUyZsEsHxVvMUwxpS', '2002-10-20', 'M', 183, 75.00, '', '', '$2y$10$yeffto2JrSbMabF.aCtuIO6NGKti4S0wquZM9dSUO9q10nmEgQPi.', '$2y$10$kpj57wtCq6ILPZF3Xb7IpO1pP56ugN1RMU/luqPE7Kq5kaj3Blh.y', 'certificato1.pdf', '2024-01-20', '2024-12-23 13:19:31', '2024-12-23 16:46:09', '2024-12-23 11:41:04', '2024-12-23 16:46:09');
+LOCK TABLES `utente` WRITE;
+/*!40000 ALTER TABLE `utente` DISABLE KEYS */;
+INSERT INTO `utente` VALUES (18,'Mario','Rossi','mario.rossi@gmail.com','$2y$10$66.MVMKJz/LLeGPsHp89LOTzkVQD1MlSDzhZdUyZsEsHxVvMUwxpS','2002-10-20','M',183,75.00,'','','$2y$10$yeffto2JrSbMabF.aCtuIO6NGKti4S0wquZM9dSUO9q10nmEgQPi.','$2y$10$kpj57wtCq6ILPZF3Xb7IpO1pP56ugN1RMU/luqPE7Kq5kaj3Blh.y','certificato1.pdf','2024-01-20','2024-12-23 20:10:49','2024-12-23 20:10:51','2024-12-23 11:41:04','2024-12-23 20:10:51');
+/*!40000 ALTER TABLE `utente` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
---
--- Indici per le tabelle scaricate
---
-
---
--- Indici per le tabelle `accessi`
---
-ALTER TABLE `accessi`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `pt_id` (`pt_id`);
-
---
--- Indici per le tabelle `admin`
---
-ALTER TABLE `admin`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`);
-
---
--- Indici per le tabelle `appuntamento`
---
-ALTER TABLE `appuntamento`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `utente_id` (`utente_id`),
-  ADD KEY `personal_trainer_id` (`personal_trainer_id`);
-
---
--- Indici per le tabelle `obiettivi`
---
-ALTER TABLE `obiettivi`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `appuntamento_id` (`appuntamento_id`);
-
---
--- Indici per le tabelle `personal_trainer`
---
-ALTER TABLE `personal_trainer`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`);
-
---
--- Indici per le tabelle `utente`
---
-ALTER TABLE `utente`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`);
-
---
--- AUTO_INCREMENT per le tabelle scaricate
---
-
---
--- AUTO_INCREMENT per la tabella `accessi`
---
-ALTER TABLE `accessi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
-
---
--- AUTO_INCREMENT per la tabella `admin`
---
-ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT per la tabella `appuntamento`
---
-ALTER TABLE `appuntamento`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
---
--- AUTO_INCREMENT per la tabella `obiettivi`
---
-ALTER TABLE `obiettivi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
-
---
--- AUTO_INCREMENT per la tabella `personal_trainer`
---
-ALTER TABLE `personal_trainer`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT per la tabella `utente`
---
-ALTER TABLE `utente`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
-
---
--- Limiti per le tabelle scaricate
---
-
---
--- Limiti per la tabella `accessi`
---
-ALTER TABLE `accessi`
-  ADD CONSTRAINT `accessi_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `utente` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `accessi_ibfk_2` FOREIGN KEY (`pt_id`) REFERENCES `personal_trainer` (`id`) ON DELETE CASCADE;
-
---
--- Limiti per la tabella `appuntamento`
---
-ALTER TABLE `appuntamento`
-  ADD CONSTRAINT `appuntamento_ibfk_1` FOREIGN KEY (`utente_id`) REFERENCES `utente` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `appuntamento_ibfk_2` FOREIGN KEY (`personal_trainer_id`) REFERENCES `personal_trainer` (`id`) ON DELETE CASCADE;
-
---
--- Limiti per la tabella `obiettivi`
---
-ALTER TABLE `obiettivi`
-  ADD CONSTRAINT `obiettivi_ibfk_1` FOREIGN KEY (`appuntamento_id`) REFERENCES `appuntamento` (`id`) ON DELETE CASCADE;
-COMMIT;
-
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-12-23 20:12:35
