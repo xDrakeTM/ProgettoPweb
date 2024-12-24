@@ -97,6 +97,7 @@ function modificaPassword(event) {
     let info = "old_password=" + encodeURIComponent(old_password) + 
                "&new_password=" + encodeURIComponent(new_password) + 
                "&confirm_password=" + encodeURIComponent(confirm_password);
+    
     x.send(info);
 
     x.onload = function() {
@@ -120,11 +121,6 @@ function recuperaPassword(event) {
     let confirm_password = document.getElementById("confirm_password").value;
     let tipo_utente = document.getElementById("tipo_utente").value;
 
-    if (new_password !== confirm_password) {
-        document.getElementById("status").textContent = "Le password non coincidono!";
-        return;
-    }
-
     const x = new XMLHttpRequest();
     x.open("POST", "../php/validazioneRecuperoPassword.php", true);
     x.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -135,7 +131,6 @@ function recuperaPassword(event) {
                "&new_password=" + encodeURIComponent(new_password) +
                "&confirm_password=" + encodeURIComponent(confirm_password) +
                "&tipo_utente=" + encodeURIComponent(tipo_utente);
-    x.send(info);
 
     x.onload = function() {
         const response = JSON.parse(x.responseText);
@@ -146,4 +141,6 @@ function recuperaPassword(event) {
             document.getElementById("status").textContent = response.message;
         }
     };
+
+    x.send(info);
 }

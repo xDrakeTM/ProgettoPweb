@@ -180,7 +180,7 @@ CREATE TABLE `personal_trainer` (
 
 LOCK TABLES `personal_trainer` WRITE;
 /*!40000 ALTER TABLE `personal_trainer` DISABLE KEYS */;
-INSERT INTO `personal_trainer` VALUES (6,'Luigi','Verdi','luigi.verdi@gmail.com','2000-12-10','M','1231231234','$2y$10$Dg/L2SNsbWKP9p5s8AFwyurympzyRJHR/84dld/0n34M6yYcs.aZC','curriculum1.pdf','2024-12-23 19:31:32','2024-12-23 19:31:59','2024-12-23 11:44:27','2024-12-23 20:10:10','$2y$10$ungBO5NziEtNSx9UPyTBmO0EgMVNwIFBUNjtKQsKtu53MNz4OfePa','$2y$10$0/WLVAtGkMInCLDB8JAPL.TSVsLJfTwXA4fBMBTRfyudrZe/ppooi',1);
+INSERT INTO `personal_trainer` VALUES (6,'Luigi','Verdi','luigi.verdi@gmail.com','2000-12-10','M','1231231234','$2y$10$Dg/L2SNsbWKP9p5s8AFwyurympzyRJHR/84dld/0n34M6yYcs.aZC','676aa15c3edf7_1735041377.pdf','2024-12-23 19:31:32','2024-12-23 19:31:59','2024-12-23 11:44:27','2024-12-23 20:10:10','$2y$10$ungBO5NziEtNSx9UPyTBmO0EgMVNwIFBUNjtKQsKtu53MNz4OfePa','$2y$10$0/WLVAtGkMInCLDB8JAPL.TSVsLJfTwXA4fBMBTRfyudrZe/ppooi',1);
 /*!40000 ALTER TABLE `personal_trainer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -222,7 +222,7 @@ CREATE TABLE `utente` (
 
 LOCK TABLES `utente` WRITE;
 /*!40000 ALTER TABLE `utente` DISABLE KEYS */;
-INSERT INTO `utente` VALUES (18,'Mario','Rossi','mario.rossi@gmail.com','$2y$10$66.MVMKJz/LLeGPsHp89LOTzkVQD1MlSDzhZdUyZsEsHxVvMUwxpS','2002-10-20','M',183,75.00,'','','$2y$10$yeffto2JrSbMabF.aCtuIO6NGKti4S0wquZM9dSUO9q10nmEgQPi.','$2y$10$kpj57wtCq6ILPZF3Xb7IpO1pP56ugN1RMU/luqPE7Kq5kaj3Blh.y','certificato1.pdf','2024-01-20','2024-12-23 20:10:49','2024-12-23 20:10:51','2024-12-23 11:41:04','2024-12-23 20:10:51');
+INSERT INTO `utente` VALUES (18,'Mario','Rossi','mario.rossi@gmail.com','$2y$10$66.MVMKJz/LLeGPsHp89LOTzkVQD1MlSDzhZdUyZsEsHxVvMUwxpS','2002-10-20','M',183,75.00,'','','$2y$10$yeffto2JrSbMabF.aCtuIO6NGKti4S0wquZM9dSUO9q10nmEgQPi.','$2y$10$yeffto2JrSbMabF.aCtuIO6NGKti4S0wquZM9dSUO9q10nmEgQPi.','676aa15c3edf7_1735041372.pdf','2024-01-20','2024-12-23 20:10:49','2024-12-23 20:10:51','2024-12-23 11:41:04','2024-12-23 20:10:51');
 /*!40000 ALTER TABLE `utente` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

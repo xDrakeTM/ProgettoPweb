@@ -72,7 +72,8 @@
                 }
 
                 $uploadDir = __DIR__ . '/../certificati/';
-                $destPath = $uploadDir . $fileName;
+                $uniqueFileName = uniqid() . '_' . time() . '.' . $fileType;
+                $destPath = $uploadDir . $uniqueFileName;
                 if (!move_uploaded_file($fileTmpPath, $destPath)) {
                     echo json_encode([
                         "success" => false,
@@ -80,7 +81,9 @@
                     ]);
                     exit;
                 }
-            } else {
+
+            } 
+            else {
                 echo json_encode([
                     "success" => false,
                     "message" => "Certificato medico mancante."
@@ -113,7 +116,7 @@
 
             $insert = "INSERT INTO utente (nome, cognome, email, data_nascita, password, risposta1, risposta2, genere, altezza, peso, informazioni_mediche, note, certificato, data_emissione_certificato) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $stmt = $conn->prepare($insert);
-            $stmt->bind_param("ssssssssddssss", $nome, $cognome, $email, $data_nascita, $hashed_password, $hashed_risposta1, $hashed_risposta2, $genere, $altezza, $peso, $informazioni_mediche, $note, $fileName, $data_emissione_certificato);
+            $stmt->bind_param("ssssssssddssss", $nome, $cognome, $email, $data_nascita, $hashed_password, $hashed_risposta1, $hashed_risposta2, $genere, $altezza, $peso, $informazioni_mediche, $note, $uniqueFileName, $data_emissione_certificato);
 
             if ($stmt->execute()) {
                 echo json_encode([

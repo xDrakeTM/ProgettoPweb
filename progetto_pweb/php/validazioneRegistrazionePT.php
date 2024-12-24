@@ -65,25 +65,28 @@
                     exit;
                 }
 
-                $allowedTypes = ['pdf', 'doc', 'docx'];
+                $allowedTypes = ['pdf', 'jpeg', 'png'];
                 if (!in_array($fileType, $allowedTypes)) {
-                    echo json_encode(["success" => false, "message" => "Tipo di file non consentito. Accettiamo solo PDF, DOC o DOCX."]);
+                    echo json_encode(["success" => false, "message" => "Tipo di file non consentito. Accettiamo solo PDF, JPG o PNG."]);
                     exit;
                 }
 
                 $uploadDir = __DIR__ . '/../curriculum/';
-                $destPath = $uploadDir . $fileName;
+                $uniqueFileName = uniqid() . '_' . time() . '.' . $fileType;
+                $destPath = $uploadDir . $uniqueFileName;
                 if (!move_uploaded_file($fileTmpPath, $destPath)) {
                     echo json_encode(["success" => false, "message" => "Errore durante il caricamento del curriculum."]);
                     exit;
                 }
-            } else {
+
+            } 
+            else {
                 echo json_encode(["success" => false, "message" => "Curriculum mancante."]);
                 exit;
             }
 
             $stmt = $conn->prepare("INSERT INTO personal_trainer (nome, cognome, email, data_nascita, genere, cellulare, password, curriculum, risposta1, risposta2, attivo) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            $stmt->bind_param("ssssssssssi", $nome, $cognome, $email, $data_nascita, $genere, $cellulare, $hashed_password, $fileName, $hashed_risposta1, $hashed_risposta2, $attivo);
+            $stmt->bind_param("ssssssssssi", $nome, $cognome, $email, $data_nascita, $genere, $cellulare, $hashed_password, $uniqueFileName, $hashed_risposta1, $hashed_risposta2, $attivo);
 
             if ($stmt->execute()) {
                 echo json_encode(["success" => true, "message" => "Registrazione completata con successo!"]);

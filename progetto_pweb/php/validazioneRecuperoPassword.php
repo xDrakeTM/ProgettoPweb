@@ -55,7 +55,7 @@
             if (!password_verify($risposta1, $utente['risposta1']) || !password_verify($risposta2, $utente['risposta2'])) {
                 echo json_encode([
                     "success" => false,
-                    "message" => "Risposte alle domande di sicurezza errate."
+                    "message" => "Risposte alle domande di sicurezza errate. ". $utente['risposta2']
                 ]);
                 exit;
             }
