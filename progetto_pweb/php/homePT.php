@@ -22,7 +22,7 @@
                         break;
                 }
                 ?>
-                <p>Esplora le nostre funzionalità e inizia il tuo percorso di fitness con PulseCoach!</p>
+                <p>Amministra qui i clienti che si sono affidati a te!</p>
             </section>
 
             <section class="features-section">

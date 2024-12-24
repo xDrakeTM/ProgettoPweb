@@ -23,7 +23,7 @@
                         break;
                 }
                 ?>
-                <p>Esplora le nostre funzionalità e inizia il tuo percorso di fitness con PulseCoach!</p>
+                <p>Esplora le nostre funzionalità e prenota il tuo allenamento!</p>
             </section>
 
             <section class="features-section">
