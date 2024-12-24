@@ -1,5 +1,5 @@
 <?php
-    include '../utility/getDBConnection.php';
+    require_once '../utility/getDBConnection.php';
 
     $conn = getDBConnection();
 

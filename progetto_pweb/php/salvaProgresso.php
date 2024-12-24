@@ -1,5 +1,5 @@
 <?php
-    include '../utility/getDBConnection.php';
+    require_once '../utility/getDBConnection.php';
 
     if (session_status() === PHP_SESSION_NONE) {
         session_start();

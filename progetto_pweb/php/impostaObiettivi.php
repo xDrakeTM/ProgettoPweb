@@ -1,5 +1,5 @@
 <?php
-    include '../utility/functions.php';
+    require_once '../utility/functions.php';
 
     controllaPT('homeUtente');
 

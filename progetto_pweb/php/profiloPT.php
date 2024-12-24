@@ -1,6 +1,6 @@
 <?php
-    include '../utility/functions.php';
-    include '../utility/getDBConnection.php';
+    require_once '../utility/functions.php';
+    require_once '../utility/getDBConnection.php';
 
     controllaPT('homeUtente');
 

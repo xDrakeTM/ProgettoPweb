@@ -1,6 +1,6 @@
 <?php
-    include '../utility/functions.php';
-    include '../utility/getDBConnection.php';
+    require_once '../utility/functions.php';
+    require_once '../utility/getDBConnection.php';
 
     if (!isset($_GET['id'])) {
         echo json_encode(["success" => false, "message" => "ID del personal trainer mancante."]);
