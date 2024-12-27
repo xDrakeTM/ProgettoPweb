@@ -51,7 +51,7 @@
             </form>
         </div>
         <div class="login-image">
-            <img src="../immagini/logo.jpg" alt="Logo PulseCoach">
+            <img src="../immagini/logo.png" alt="Logo PulseCoach">
         </div>
     </div>
 </body>

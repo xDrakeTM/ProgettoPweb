@@ -22,7 +22,6 @@
         $id_pt = $_GET['id_pt'];
         $user_id = $_SESSION["user_id"];
 
-        // Recupera le disponibilità del personal trainer e gli appuntamenti dell'utente
         $stmt = $conn->prepare("
             SELECT data, ora 
             FROM appuntamento 
