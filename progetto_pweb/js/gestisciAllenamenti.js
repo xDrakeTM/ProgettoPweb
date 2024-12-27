@@ -14,7 +14,6 @@ function aggiornaStatoAppuntamento(id, stato) {
     const x = new XMLHttpRequest();
     x.open("POST", "../php/vediAllenamenti.php", true);
     x.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    x.send("id=" + encodeURIComponent(id) + "&stato=" + encodeURIComponent(stato));
     x.onload = function() {
         if (this.status === 200) {
             const response = JSON.parse(this.responseText);
@@ -27,4 +26,5 @@ function aggiornaStatoAppuntamento(id, stato) {
             }
         }
     };
+    x.send("id=" + encodeURIComponent(id) + "&stato=" + encodeURIComponent(stato));
 }
