@@ -36,7 +36,8 @@
         if ($stmt->execute()) {
             header("Location: gestionePT.php");
             exit();
-        } else {
+        } 
+        else {
             echo "Errore durante l'aggiornamento dello stato del PT: " . $stmt->error;
         }
         $stmt->close();

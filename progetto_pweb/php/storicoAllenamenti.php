@@ -4,29 +4,26 @@
 
     controllaPT('homeUtente');
 
-    $q = function() {
-        global $user;
-        $user_id = $_SESSION["user_id"];
+    $user_id = $_SESSION["user_id"];
 
-        $conn = getDBConnection();
-        if ($conn->connect_error) {
-            die("Errore di connessione al database: " . $conn->connect_error);
-        }
+    $conn = getDBConnection();
+    if ($conn->connect_error) {
+        die("Errore di connessione al database: " . $conn->connect_error);
+    }
 
-        $sql = "SELECT a.id, concat(u.nome, ' ', u.cognome) as utente, DATE_FORMAT(a.data, '%d/%m/%Y') as data, TIME_FORMAT(a.ora, '%H:%i') as ora_inizio, TIME_FORMAT((a.ora + INTERVAL 1 HOUR), '%H:%i') as ora_fine, a.stato 
-                FROM appuntamento a 
-                INNER JOIN utente u ON a.utente_id = u.id 
-                WHERE a.personal_trainer_id = ? AND (a.stato = 'confermato' OR a.stato = 'cancellato')";
-        
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param("i", $user_id);
-        $stmt->execute();
-        $user = $stmt->get_result();
-    };
+    $sql = "SELECT a.id, concat(u.nome, ' ', u.cognome) as utente, DATE_FORMAT(a.data, '%d/%m/%Y') as data, TIME_FORMAT(a.ora, '%H:%i') as ora_inizio, TIME_FORMAT((a.ora + INTERVAL 1 HOUR), '%H:%i') as ora_fine, a.stato 
+            FROM appuntamento a 
+            INNER JOIN utente u ON a.utente_id = u.id 
+            WHERE a.personal_trainer_id = ? AND (a.stato = 'confermato' OR a.stato = 'cancellato')";
+    
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $user = $stmt->get_result();
 
     _header('Storico Allenamenti', 
     '<link rel="stylesheet" href="../css/utility.css">
-    <script src="../js/storicoAllenamenti.js"></script>', $q);
+    <script src="../js/storicoAllenamenti.js"></script>');
     menuPT();
 ?>
 <main>

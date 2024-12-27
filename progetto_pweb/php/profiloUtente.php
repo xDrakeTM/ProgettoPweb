@@ -4,18 +4,14 @@
 
     controllaUtente('homePT');
 
-    $sql = function() {
-        global $user;
+    $user_id = $_SESSION["user_id"];
 
-        $user_id = $_SESSION["user_id"];
-
-        $conn = getDBConnection();
-        $stmt = $conn->prepare("SELECT nome, cognome, email, data_nascita, genere, altezza, peso, informazioni_mediche, note, certificato, data_emissione_certificato FROM utente WHERE id = ?");
-        $stmt->bind_param("i", $user_id);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $user = $result->fetch_assoc();
-    };
+    $conn = getDBConnection();
+    $stmt = $conn->prepare("SELECT nome, cognome, email, data_nascita, genere, altezza, peso, informazioni_mediche, note, certificato, data_emissione_certificato FROM utente WHERE id = ?");
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $user = $result->fetch_assoc();
 
     _header('Profilo Utente', '
     <link rel="stylesheet" href="../css/profilo.css">

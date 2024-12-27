@@ -7,6 +7,7 @@
     if (session_status() === PHP_SESSION_NONE) {
         session_start();
     }
+    
     $user_id = $_SESSION["user_id"];
 
     if (!isset($_GET['allenamento_id'])) {

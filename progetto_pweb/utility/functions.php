@@ -1,5 +1,5 @@
 <?php    
-    function _header($titolo, $frammento = '', $sql = null) {
+    function _header($titolo, $frammento = '') {
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
@@ -8,12 +8,6 @@
             header("Location: ../php/login.php");
             exit();
         }
-
-        if (is_callable($sql)) {
-            global $user;
-            $sql();
-        }
-
 
         echo '
             <!DOCTYPE html>

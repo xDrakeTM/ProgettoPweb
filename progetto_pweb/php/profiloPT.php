@@ -4,22 +4,18 @@
 
     controllaPT('homeUtente');
 
-    $sql = function() {
-        global $user;
+    $user_id = $_SESSION["user_id"];
 
-        $user_id = $_SESSION["user_id"];
-
-        $conn = getDBConnection();
-        $stmt = $conn->prepare("SELECT nome, cognome, email, data_nascita, genere, cellulare, curriculum FROM personal_trainer WHERE id = ?");
-        $stmt->bind_param("i", $user_id);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $user = $result->fetch_assoc();
-    };
+    $conn = getDBConnection();
+    $stmt = $conn->prepare("SELECT nome, cognome, email, data_nascita, genere, cellulare, curriculum FROM personal_trainer WHERE id = ?");
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $user = $result->fetch_assoc();
 
     _header('Profilo Personal Trainer', '
     <link rel="stylesheet" href="../css/profilo.css">
-    <script src="../js/profilo.js"></script>', $sql);
+    <script src="../js/profilo.js"></script>');
     menuPT();
 ?>
 <main>
