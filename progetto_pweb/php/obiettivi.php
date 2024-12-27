@@ -15,9 +15,9 @@
         die("Errore di connessione al database: " . $conn->connect_error);
     }
 
-    $sql = "SELECT a.id, CONCAT(p.nome, ' ', p.cognome) as pt, DATE_FORMAT(a.data, '%d/%m/%Y') as data, TIME_FORMAT(a.ora, '%H:%i') as ora_inizio, TIME_FORMAT((a.ora + INTERVAL 1 HOUR), '%H:%i') as ora_fine 
+    $sql = "SELECT a.id, CONCAT(p.nome, ' ', p.cognome) as pt, DATE_FORMAT(a.data, '%d/%m/%Y') as data, TIME_FORMAT(a.ora, '%H:%i') as ora_inizio, TIME_FORMAT((a.ora + INTERVAL 1 HOUR), '%H:%i') as ora_fine, a.stato
             FROM appuntamento a INNER JOIN personal_trainer p ON a.personal_trainer_id = p.id
-            WHERE a.utente_id = ? AND a.stato = 'confermato'";
+            WHERE a.utente_id = ?";
 
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $user_id);
@@ -54,11 +54,19 @@
                 <tbody>
                     <?php foreach ($allenamenti as $allenamento) : ?>
                         <tr>
+                        <?php if ($allenamento['stato'] == 'confermato') : ?>
                             <td><?php echo htmlspecialchars($allenamento['pt']); ?></td>
                             <td><?php echo htmlspecialchars($allenamento['data']); ?></td>
                             <td><?php echo htmlspecialchars($allenamento['ora_inizio']); ?></td>
                             <td><?php echo htmlspecialchars($allenamento['ora_fine']); ?></td>
                             <td><a style="font-weight: bold;" href="compilaObiettivi.php?allenamento_id=<?php echo $allenamento['id']; ?>">Compila Obiettivi</a></td>
+                        <?php else : ?>
+                            <td><?php echo htmlspecialchars($allenamento['pt']); ?></td>
+                            <td><?php echo htmlspecialchars($allenamento['data']); ?></td>
+                            <td><?php echo htmlspecialchars($allenamento['ora_inizio']); ?></td>
+                            <td><?php echo htmlspecialchars($allenamento['ora_fine']); ?></td>
+                            <td><?php echo htmlspecialchars($allenamento['stato']); ?></td>
+                        <?php endif; ?>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
