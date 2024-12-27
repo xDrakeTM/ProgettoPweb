@@ -65,11 +65,8 @@ document.addEventListener('change', function() {
                         }
 
                         disponibilita.forEach(function(elem) {
-                            // console.log(elem.data);
                             if (elem.data == selectedDate) {
                                 for (let option of oraSelect.options) {
-                                    // console.log(option.value + " " + elem.ora);
-                                    // console.log(option.value);
                                     if (option.value == elem.ora) {
                                         option.disabled = true;
                                     }

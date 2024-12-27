@@ -6,7 +6,7 @@
     }
 
     if (!isset($_SESSION["user_id"])) {
-         die(json_encode(["success" => false, "message" => "Utente non autenticato"]));
+        die(json_encode(["success" => false, "message" => "Utente non autenticato"]));
     }
 
     $conn = getDBConnection();
@@ -21,7 +21,7 @@
     if (isset($_GET['id_pt'])) {
         $id_pt = $_GET['id_pt'];
 
-        $stmt = $conn->prepare("SELECT data, ora FROM appuntamento WHERE personal_trainer_id = ?");
+        $stmt = $conn->prepare("SELECT data, ora FROM appuntamento WHERE personal_trainer_id = ? AND stato = 'confermato'");
         $stmt->bind_param("i", $id_pt);
         $stmt->execute();
         $result = $stmt->get_result();
