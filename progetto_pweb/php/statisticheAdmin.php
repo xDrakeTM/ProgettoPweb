@@ -117,8 +117,8 @@
 
     <section class="stats-section">
         <div class="stat-box">
-            <h3>Utenti Registrati:</h3><br>
-            <p><?php echo $total_users; ?></p>
+            <h3>Utenti Registrati:</h3>
+            <p style="margin-top: 20px;"><?php echo $total_users; ?></p>
         </div>
         <div class="stat-box">
             <h3>Personal Trainer Registrati:</h3>
