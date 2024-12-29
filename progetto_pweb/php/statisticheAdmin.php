@@ -117,8 +117,8 @@
 
     <section class="stats-section">
         <div class="stat-box">
-            <h3>Utenti Registrati:</h3><br>
-            <p><?php echo $total_users; ?></p>
+            <h3>Utenti Registrati:</h3>
+            <p style="margin-top: 20px;"><?php echo $total_users; ?></p>
         </div>
         <div class="stat-box">
             <h3>Personal Trainer Registrati:</h3>
@@ -140,6 +140,7 @@
     </section>
 </main>
 
+<!- Parte non originale -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     const registrazioniUtenti = <?php echo json_encode($registrazioni_utenti); ?>;
