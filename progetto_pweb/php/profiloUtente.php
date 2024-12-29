@@ -15,7 +15,7 @@
 
     _header('Profilo Utente', '
     <link rel="stylesheet" href="../css/profilo.css">
-    <script src="../js/profilo.js"></script>', $sql);
+    <script src="../js/profilo.js"></script>');
     menuUtente();
 ?>
 <main>
