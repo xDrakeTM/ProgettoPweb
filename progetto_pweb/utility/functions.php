@@ -33,6 +33,7 @@
                                     <li><a href="homeUtente.php">Dashboard</a></li>
                                     <li><a href="profiloUtente.php">Profilo</a></li>
                                     <li><a href="prenotazione.php">Prenota</a></li>
+                                    <li><a href="allenamenti.php">Storico Allenamenti</a></li>
                                     <li><a href="obiettivi.php">Obiettivi</a></li>
                                     <li><a href="statistiche.php">Statistiche Mensili</a></li>
                                     <li><a href="logout.php">Logout</a></li>

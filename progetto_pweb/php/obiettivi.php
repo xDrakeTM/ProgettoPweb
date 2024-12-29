@@ -37,7 +37,7 @@
 ?>
 <main>
     <section class="welcome-section">
-        <h1>Storico Allenamenti</h1>
+        <h1>Imposta Obiettivi</h1>
         <?php if (empty($allenamenti)) : ?>
             <p style="margin-top: 20px;">Non ci sono allenamenti da visualizzare</p>
         <?php else : ?>
@@ -60,12 +60,6 @@
                             <td><?php echo htmlspecialchars($allenamento['ora_inizio']); ?></td>
                             <td><?php echo htmlspecialchars($allenamento['ora_fine']); ?></td>
                             <td><a style="font-weight: bold;" href="compilaObiettivi.php?allenamento_id=<?php echo $allenamento['id']; ?>">Compila Obiettivi</a></td>
-                        <?php else : ?>
-                            <td><?php echo htmlspecialchars($allenamento['pt']); ?></td>
-                            <td><?php echo htmlspecialchars($allenamento['data']); ?></td>
-                            <td><?php echo htmlspecialchars($allenamento['ora_inizio']); ?></td>
-                            <td><?php echo htmlspecialchars($allenamento['ora_fine']); ?></td>
-                            <td><?php echo htmlspecialchars($allenamento['stato']); ?></td>
                         <?php endif; ?>
                         </tr>
                     <?php endforeach; ?>
