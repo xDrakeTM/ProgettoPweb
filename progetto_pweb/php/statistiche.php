@@ -88,6 +88,7 @@
 
     _header('Statistiche Mensili', 
     '<link rel="stylesheet" href="../css/statistiche.css">
+    <!- Parte non originale -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../js/statistiche.js"></script>');
     menuUtente();
