@@ -74,7 +74,8 @@ function eliminaAccount() {
                     statusDiv.textContent = response.message;
                     statusDiv.style.color = "red";
                 }
-            } catch (e) {
+            } 
+            catch (e) {
                 statusDiv.textContent = "Errore durante l'eliminazione dell'account.";
                 statusDiv.style.color = "red";
                 console.error("Errore nel parsing della risposta JSON:", e);

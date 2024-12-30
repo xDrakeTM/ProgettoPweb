@@ -77,7 +77,12 @@
 
     $conn->close();
 
-    _header('Statistiche Admin', '<link rel="stylesheet" href="../css/statistiche.css">');
+    _header('Statistiche Admin', 
+    '<link rel="stylesheet" href="../css/statistiche.css">
+    <!- Inizio parte non originale -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!- Fine parte non originale -->
+    <script src="../js/statisticheAdmin.js"></script>');
     menuAdmin();
 ?>
 
@@ -140,13 +145,10 @@
     </section>
 </main>
 
-<!- Parte non originale -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     const registrazioniUtenti = <?php echo json_encode($registrazioni_utenti); ?>;
     const registrazioniPTs = <?php echo json_encode($registrazioni_pts); ?>;
 </script>
-<script src="../js/statisticheAdmin.js"></script>
 
 <?php
     _footer();
