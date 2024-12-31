@@ -45,7 +45,8 @@
             }
 
             $uploadDir = __DIR__ . '/../certificati/';
-            $destPath = $uploadDir . $fileName;
+            $uniqueFileName = uniqid() . '_' . time() . '.' . $fileType;
+            $destPath = $uploadDir . $uniqueFileName;
             if (!move_uploaded_file($fileTmpPath, $destPath)) {
                 echo json_encode(["success" => false, "message" => "Errore durante il caricamento del certificato medico."]);
                 exit();
@@ -64,15 +65,17 @@
             }
 
             $stmt = $conn->prepare("UPDATE utente SET email = ?, altezza = ?, peso = ?, data_emissione_certificato = ?, informazioni_mediche = ?, note = ?, certificato = ? WHERE id = ?");
-            $stmt->bind_param("sssssssi", $email, $altezza, $peso, $data_emissione_certificato, $informazioni_mediche, $note, $fileName, $user_id);
-        } else {
+            $stmt->bind_param("sssssssi", $email, $altezza, $peso, $data_emissione_certificato, $informazioni_mediche, $note, $uniqueFileName, $user_id);
+        } 
+        else {
             $stmt = $conn->prepare("UPDATE utente SET email = ?, altezza = ?, peso = ?, data_emissione_certificato = ?, informazioni_mediche = ?, note = ? WHERE id = ?");
             $stmt->bind_param("ssssssi", $email, $altezza, $peso, $data_emissione_certificato, $informazioni_mediche, $note, $user_id);
         }
 
         if ($stmt->execute()) {
             echo json_encode(["success" => true, "message" => "Profilo aggiornato con successo!"]);
-        } else {
+        } 
+        else {
             echo json_encode(["success" => false, "message" => "Errore durante l'aggiornamento del profilo: " . $stmt->error]);
         }
 

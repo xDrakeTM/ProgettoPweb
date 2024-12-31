@@ -40,7 +40,8 @@
             }
 
             $uploadDir = __DIR__ . '/../curriculum/';
-            $destPath = $uploadDir . $fileName;
+            $uniqueFileName = uniqid() . '_' . time() . '.' . $fileType;
+            $destPath = $uploadDir . $uniqueFileName;
             if (!move_uploaded_file($fileTmpPath, $destPath)) {
                 echo json_encode(["success" => false, "message" => "Errore durante il caricamento del curriculum."]);
                 exit();
@@ -58,7 +59,7 @@
             }
 
             $stmt = $conn->prepare("UPDATE personal_trainer SET email = ?, cellulare = ?, curriculum = ? WHERE id = ?");
-            $stmt->bind_param("sssi", $email, $cellulare, $fileName, $user_id);
+            $stmt->bind_param("sssi", $email, $cellulare, $uniqueFileName, $user_id);
         } 
         else {
             $stmt = $conn->prepare("UPDATE personal_trainer SET email = ?, cellulare = ? WHERE id = ?");
