@@ -55,7 +55,7 @@
             <tbody>
                 <?php while ($row = $user->fetch_assoc()) : ?>
                     <tr id="appuntamento-<?php echo $row['id']; ?>">
-                        <td><?php echo htmlspecialchars($row['utente'] . ' ' . $row['cognome']); ?></td>
+                        <td><?php echo htmlspecialchars($row['utente']); ?></td>
                         <td><?php echo htmlspecialchars($row['data']); ?></td>
                         <td><?php echo htmlspecialchars($row['ora_inizio']); ?></td>
                         <td><?php echo htmlspecialchars($row['ora_fine']); ?></td>
