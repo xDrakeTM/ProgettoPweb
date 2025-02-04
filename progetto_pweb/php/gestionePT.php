@@ -43,11 +43,14 @@
         $stmt->close();
     }
 
+    // Chiude la connessione al database
     $conn->close();
 
+    // Include l'header della pagina con il titolo e i link ai file CSS e JS
     _header('Gestione Personal Trainer', 
     '<link rel="stylesheet" href="../css/utility.css">
     <script src="../js/gestioneUtentiPT.js"></script>');
+    // Include il menu dell'amministratore
     menuAdmin();
 ?>
 
@@ -57,6 +60,7 @@
     </section>
 
     <section class="filter-section">
+        <!-- Input per filtrare i personal trainer -->
         <input type="text" class="filter-input" id="filter-input" placeholder="Filtra...">
     </section>
 
@@ -79,7 +83,9 @@
                 </tr>
             </thead>
             <tbody id="TableBody">
+                <!-- Verifica se ci sono risultati nella query -->
                 <?php if ($result->num_rows > 0): ?>
+                    <!-- Itera sui risultati della query e li visualizza nella tabella -->
                     <?php while($row = $result->fetch_assoc()): ?>
                         <tr>
                             <td><?php echo htmlspecialchars($row['nome']) . ' ' . htmlspecialchars($row['cognome']); ?></td>
@@ -87,7 +93,7 @@
                             <td><?php echo htmlspecialchars($row['data_nascita']); ?></td>
                             <td><?php echo htmlspecialchars($row['genere']); ?></td>
                             <td><?php echo htmlspecialchars($row['cellulare']); ?></td>
-                            <td><a href="../curriculum/<?php echo htmlspecialchars($row['curriculum']); ?>" target="_blank">Visualizza Curriculum</a></td>
+                            <td><a href="../curriculum/<?php echo htmlspecialchars($row['curriculum']); ?>" target="_blank">Visualizza</a></td>
                             <td><?php echo htmlspecialchars($row['timestamp_login']); ?></td>
                             <td><?php echo htmlspecialchars($row['timestamp_logout']); ?></td>
                             <td><?php echo htmlspecialchars($row['timestamp_creazione']); ?></td>
@@ -103,6 +109,7 @@
                         </tr>
                     <?php endwhile; ?>
                 <?php else: ?>
+                    <!-- Messaggio se non ci sono risultati -->
                     <tr>
                         <td colspan="12">Nessun personal trainer trovato.</td>
                     </tr>

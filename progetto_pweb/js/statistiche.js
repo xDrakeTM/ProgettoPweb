@@ -85,24 +85,25 @@ document.addEventListener('DOMContentLoaded', function() {
                     fill: false
                 },
                 {
-                    label: 'Serie',
+                    label: 'Peso',
                     data: progresso2Data,
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
+                    backgroundColor: 'rgba(255, 159, 64, 0.2)',
+                    borderColor: 'rgba(255, 159, 64, 1)',
                     borderWidth: 1,
                     fill: false
                 },
                 {
-                    label: 'Peso',
+                    label: 'Tempo',
                     data: progresso3Data,
-                    backgroundColor: 'rgba(255, 206, 86, 0.2)',
-                    borderColor: 'rgba(255, 206, 86, 1)',
+                    backgroundColor: 'rgba(153, 102, 255, 0.2)',
+                    borderColor: 'rgba(153, 102, 255, 1)',
                     borderWidth: 1,
                     fill: false
                 }
             ]
         },
         options: {
+            responsive: true,
             scales: {
                 y: {
                     beginAtZero: true,
@@ -110,6 +111,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             },
             plugins: {
+                legend: {
+                    display: true
+                },
                 title: {
                     display: true,
                     text: 'Progresso negli Allenamenti',

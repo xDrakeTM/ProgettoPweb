@@ -1,30 +1,45 @@
 <?php
+    // Include il file delle funzioni utilitarie
     require_once '../utility/functions.php';
+    // Include il file per ottenere la connessione al database
     require_once '../utility/getDBConnection.php';
 
+    // Controlla se l'utente ha i permessi per accedere a questa pagina
     controllaUtente('homePT');
 
+    // Ottiene la connessione al database
     $conn = getDBConnection();
+    // Verifica se ci sono errori di connessione
     if ($conn->connect_error) {
         die("Connessione al database fallita: " . $conn->connect_error);
     }
 
+    // Recupera l'ID dell'utente dalla sessione
     $user_id = $_SESSION["user_id"];
+    // Prepara la query SQL per recuperare la data di emissione del certificato medico dell'utente
     $stmt = $conn->prepare("SELECT data_emissione_certificato FROM utente WHERE id = ?");
+    // Associa l'ID dell'utente al parametro della query
     $stmt->bind_param("i", $user_id);
+    // Esegue la query
     $stmt->execute();
+    // Ottiene il risultato della query
     $result = $stmt->get_result();
+    // Recupera i dati dell'utente
     $user = $result->fetch_assoc();
+    // Chiude lo statement
     $stmt->close();
 
+    // Calcola la data di scadenza del certificato medico
     $data_emissione = new DateTime($user['data_emissione_certificato']);
     $data_scadenza = (clone $data_emissione)->modify('+12 months');
     $oggi = new DateTime();
     $certificato_scaduto = $oggi > $data_scadenza;
 
+    // Include l'header della pagina con il titolo e i link ai file CSS e JS
     _header('Prenota un Appuntamento', '
     <link rel="stylesheet" href="../css/prenotazione.css">
     <script src="../js/prenotazione.js"></script>');
+    // Include il menu dell'utente
     menuUtente();
 ?>
 
@@ -33,12 +48,15 @@
         <div class="form-container">
             <h1>Prenota un Appuntamento</h1>
             <?php if ($certificato_scaduto): ?>
+                <!-- Messaggio di avviso se il certificato medico è scaduto -->
                 <p style="color: red;">Il tuo certificato medico è scaduto. Non puoi prenotare un appuntamento finché non aggiorni il tuo certificato.</p>
             <?php else: ?>
+                <!-- Form per prenotare un appuntamento -->
                 <form id="bookingForm" onsubmit="prenotaAppuntamento(event)">
                     <label for="personal_trainer">Seleziona un Personal Trainer:</label>
                     <select id="personal_trainer" name="personal_trainer" required onchange="caricaCurriculum(this.value)">
                         <option value="">Seleziona un PT...</option>
+                        <!-- Le opzioni dei personal trainer verranno caricate dinamicamente -->
                     </select>
 
                     <div id="curriculum" style="margin-top: 10px; margin-bottom: 10px;"></div>

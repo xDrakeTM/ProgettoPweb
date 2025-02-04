@@ -33,20 +33,25 @@
             $fileName = basename($certificato_medico['name']);
             $fileType = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
 
+            // Verifica se il file è troppo grande
             if ($fileSize > 5242880) {
                 echo json_encode(["success" => false, "message" => "Il file è troppo grande. La dimensione massima è di 5 MB."]);
                 exit();
             }
 
+            // Verifica se il tipo di file è consentito
             $allowedTypes = ['pdf', 'jpg', 'jpeg', 'png'];
             if (!in_array($fileType, $allowedTypes)) {
                 echo json_encode(["success" => false, "message" => "Tipo di file non consentito. Accettiamo solo PDF, JPG o PNG."]);
                 exit();
             }
 
+            // Imposta la directory di upload e il nome unico del file
             $uploadDir = __DIR__ . '/../certificati/';
             $uniqueFileName = uniqid() . '_' . time() . '.' . $fileType;
             $destPath = $uploadDir . $uniqueFileName;
+
+            // Sposta il file caricato nella directory di destinazione
             if (!move_uploaded_file($fileTmpPath, $destPath)) {
                 echo json_encode(["success" => false, "message" => "Errore durante il caricamento del certificato medico."]);
                 exit();
@@ -64,23 +69,28 @@
                 unlink($uploadDir . $old_certificato);
             }
 
+            // Prepara la query SQL per aggiornare il profilo dell'utente con il nuovo certificato
             $stmt = $conn->prepare("UPDATE utente SET email = ?, altezza = ?, peso = ?, data_emissione_certificato = ?, informazioni_mediche = ?, note = ?, certificato = ? WHERE id = ?");
             $stmt->bind_param("sssssssi", $email, $altezza, $peso, $data_emissione_certificato, $informazioni_mediche, $note, $uniqueFileName, $user_id);
         } 
         else {
+            // Prepara la query SQL per aggiornare il profilo dell'utente senza il nuovo certificato
             $stmt = $conn->prepare("UPDATE utente SET email = ?, altezza = ?, peso = ?, data_emissione_certificato = ?, informazioni_mediche = ?, note = ? WHERE id = ?");
             $stmt->bind_param("ssssssi", $email, $altezza, $peso, $data_emissione_certificato, $informazioni_mediche, $note, $user_id);
         }
 
+        // Esegue la query e verifica se è stata eseguita con successo
         if ($stmt->execute()) {
-            echo json_encode(["success" => true, "message" => "Profilo aggiornato con successo!"]);
+            echo json_encode(["success" => true, "message" => "Profilo aggiornato con successo"]);
         } 
         else {
             echo json_encode(["success" => false, "message" => "Errore durante l'aggiornamento del profilo: " . $stmt->error]);
         }
 
+        // Chiude lo statement
         $stmt->close();
     }
 
+    // Chiude la connessione al database
     $conn->close();
 ?>

@@ -123,26 +123,41 @@
             </select>
             <button class="filter-button" type="submit">Filtra</button>
         </form>
+
+        <!-- Contenitore per il grafico della percentuale di completamento -->
         <div class="chart-container">
             <canvas id="percentualeCompletatiChart"></canvas>
         </div>
+
+        <!-- Contenitore per il grafico della media degli esercizi quantitativi -->
         <div class="chart-container">
             <canvas id="mediaEserciziQuantitativiChart"></canvas>
         </div>
+
+        <!-- Contenitore per il grafico del progresso negli allenamenti -->
         <div class="chart-container">
             <canvas id="progressoAllenamentiChart"></canvas>
         </div>
+
+        <!-- Contenitore per il grafico dello stato degli esercizi continuativi -->
         <div class="chart-container">
             <canvas id="statoContinuativiChart"></canvas>
         </div>
     </section>
 </main>
+
 <script>
+    // Dati per il grafico della percentuale di completamento
     const percentualeCompletati = <?php echo json_encode($percentualeCompletati); ?>;
+    // Dati per il grafico della media degli esercizi quantitativi
     const mediaEserciziQuantitativi = <?php echo json_encode($mediaEserciziQuantitativi); ?>;
+    // Dati per il grafico del progresso negli allenamenti
     const quantitativiData = <?php echo json_encode($quantitativi); ?>;
+    // Dati per il grafico dello stato degli esercizi continuativi
     const continuativiData = <?php echo json_encode($continuativi); ?>;
 </script>
+
 <?php
-    _footer();
+// Include il footer della pagina
+_footer();
 ?>
