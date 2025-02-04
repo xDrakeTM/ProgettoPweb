@@ -112,9 +112,12 @@ function modificaPassword(event) {
     };
 }
 
+// Funzione per recuperare la password
 function recuperaPassword(event) {
+    // Previene l'invio predefinito del modulo
     event.preventDefault();
 
+    // Recupera i valori degli input
     let email = document.getElementById("email").value;
     let risposta1 = document.getElementById("risposta1").value;
     let risposta2 = document.getElementById("risposta2").value;
@@ -122,10 +125,13 @@ function recuperaPassword(event) {
     let confirm_password = document.getElementById("confirm_password").value;
     let tipo_utente = document.getElementById("tipo_utente").value;
 
+    // Crea una nuova richiesta XMLHttpRequest
     const x = new XMLHttpRequest();
+    // Configura la richiesta per inviare i dati al server
     x.open("POST", "../php/validazioneRecuperoPassword.php", true);
     x.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
+    // Prepara i dati da inviare
     let info = "email=" + encodeURIComponent(email) +
                "&risposta1=" + encodeURIComponent(risposta1) + 
                "&risposta2=" + encodeURIComponent(risposta2) +
@@ -133,15 +139,21 @@ function recuperaPassword(event) {
                "&confirm_password=" + encodeURIComponent(confirm_password) +
                "&tipo_utente=" + encodeURIComponent(tipo_utente);
 
+    // Definisce la funzione da eseguire quando la richiesta è completata
     x.onload = function() {
+        // Analizza la risposta JSON
         const response = JSON.parse(x.responseText);
+        // Verifica se il recupero della password è stato effettuato con successo
         if (response.success) {
+            // Reindirizza l'utente alla pagina di conferma del cambio password
             window.location.href = "../html/cambioPasswordEffettuato.html";
         } 
         else {
+            // Mostra un messaggio di errore
             document.getElementById("status").textContent = response.message;
         }
     };
 
+    // Invia la richiesta con le informazioni
     x.send(info);
 }
