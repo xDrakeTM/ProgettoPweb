@@ -1,4 +1,4 @@
-# Progetto di Pweb 
+# Progetto di Pweb - Università Di Pisa
 
 PulseCoach è una piattaforma web progettata per aiutare gli utenti a gestire i loro allenamenti e obiettivi di fitness. La piattaforma offre funzionalità per diversi tipi di utenti: amministratori, utenti della palestra e personal trainer.
 
